@@ -19,6 +19,8 @@ group :development do
   gem "rails-erd"
 end
 
+gem 'pry-rails', :group => :development
+
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -33,6 +35,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'faker'
 gem 'bootstrap-sass'
 
 # To use ActiveModel has_secure_password
