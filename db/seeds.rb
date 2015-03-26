@@ -7,7 +7,12 @@ require 'faker'
      body:   Faker::Lorem.paragraph
    )
  end
+
  posts = Post.all
+
+
+Post.where(title: 'The Social Network' , body: 'Awesome Movie!').first_or_create
+
  
  # Create Comments
  100.times do
@@ -16,6 +21,9 @@ require 'faker'
      body: Faker::Lorem.paragraph
    )
  end
+
+ Comment.where(body: 'Yes me too!').first_or_create
+
  
  puts "Seed finished"
  puts "#{Post.count} posts created"
