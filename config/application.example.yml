@@ -1,0 +1,5 @@
+#store sendgrid logins as ENV variables
+
+SENDGRID_PASSWORD:
+SENDGRID_USERNAME:
+SECRET_KEY_BASE:
