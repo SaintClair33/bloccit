@@ -20,6 +20,7 @@ group :development do
 end
 
 gem 'pry-rails', :group => :development
+gem 'strong_parameters'
 
 
 # Gems used only for assets and not required
