@@ -32,12 +32,19 @@ group :assets do
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
 
-  gem 'uglifier', '>= 1.0.3'
+  gem 'uglifier', '>= 1.3.0'
 end
 
 gem 'jquery-rails'
 gem 'faker'
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', '~> 3.1.1'
+
+group :doc do
+  gem 'sdoc', require: false
+end
+
+gem 'faker'
+gem 'devise'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
