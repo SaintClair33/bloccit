@@ -19,10 +19,10 @@ class PostsController < ApplicationController
     
     if @post.save
       flash[:notice] = "Your new post was created and saved."
-      redirect_to @post
+      redirect_to @post #takes you to the new post you created
     else
       flash[:error] = "There was an error saving the post. Please try again."
-      render :new
+      render :new # it grabs the new.html.erb file and pastes it in the view
     end
   end
 
