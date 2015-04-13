@@ -14,8 +14,9 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(params.require(:post).permit(:title, :body))
+    #@post = Post.new(params.require(:post).permit(:title, :body))
     #require and permit make sure only certain keys are passed to Post.new
+    @post = current_user.posts.build(params.require(:post).permit(:title, :body))
     
     if @post.save
       flash[:notice] = "Your new post was created and saved."
