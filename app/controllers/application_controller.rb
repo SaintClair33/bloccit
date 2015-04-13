@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-    before_filter :configure_permitted_parameters, :posts_controller?, :flash_attack,
+    before_filter :configure_permitted_parameters, :flash_attack,
+
+
     if: :devise_controller?
 
     protected
@@ -8,13 +10,23 @@ class ApplicationController < ActionController::Base
     def configure_permitted_parameters
       devise_parameter_sanitizer.for(:sign_up) << :name
     end
+    
 
-    def posts_controller?
-      controller_name == 'posts'
-    end
 
+    #def posts_controller?
+      #controller_name == 'posts'
+      #flash[:notice] = "This better work."
+    #end
     def flash_attack
-
+      if controller_name == 'posts'
+      flash[:notice] = "This better work."
     end
+  end
+
+
+
+
+
 
 end
+
