@@ -37,7 +37,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
-gem 'faker'
+#gem 'faker'
 gem 'bootstrap-sass', '~> 3.1.1'
 
 group :doc do
@@ -46,7 +46,9 @@ end
 
 gem 'faker'
 gem 'devise'
+gem 'pundit'
 gem 'figaro', '1.0'
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

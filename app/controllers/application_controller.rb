@@ -1,7 +1,12 @@
 class ApplicationController < ActionController::Base
+      include Pundit
   protect_from_forgery with: :exception
     before_filter :configure_permitted_parameters, #:posts_controller?, :flash_attack,
     if: :devise_controller?
+
+      rescue_from Pundit::NotAuthorizedError do |exception| #if there is a error creating a post  
+        redirect_to root_url, alert: exception.message
+      end
 
     protected
 

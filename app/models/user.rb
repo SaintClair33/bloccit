@@ -7,4 +7,14 @@ class User < ActiveRecord::Base
   attr_accessible :title, :body, :email, :password,
   :password_confirmation, :name, :user 
   has_many :posts
+
+  def admin?
+    role == 'admin'
+  end
+
+  def moderator?
+    role == 'moderator'
+  end
+
+  
 end
