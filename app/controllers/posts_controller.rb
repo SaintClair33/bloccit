@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   def index #for the index page
-      @posts = Post.all #gets all data from posts table and sends
+      @posts = policy_scope(Post) #gets all data from posts table and sends
       #it to the array posts
       #authorize @posts  #want to lists our posts publicly
   end
