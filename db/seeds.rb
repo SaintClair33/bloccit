@@ -40,14 +40,14 @@ users = User.all
  end
 
  user = User.first
- user.skip_confirmation!
+ user.skip_reconfirmation!
  user.update_attributes!(
     email: 'ceo.wonu@gmail.com',
-    password: 'hellocuz')
+    password: 'ceo2015$')
 
 
  
  puts "Seed finished"
+ puts "#{User.count} users created"
  puts "#{Post.count} posts created"
- puts "#{Comment.count} comments created"
  puts "#{Comment.count} comments created"

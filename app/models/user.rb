@@ -4,8 +4,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
-  attr_accessible :title, :body, :email, :password,
-  :password_confirmation, :name, :user 
   has_many :posts
 
   def admin?
