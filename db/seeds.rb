@@ -28,12 +28,20 @@ users = User.all
       )
   end
   topics = Topic.all
+
+  # Create Summary
+  50.times do
+    Summary.create!(
+      summary: Faker::Lorem.sentence)
+  end
+  summaries = Summary.all
  
  # Create Posts
  50.times do
    Post.create!(
      user:   users.sample,
      topic: topics.sample,
+     summary: summaries.sample,
      title:  Faker::Lorem.sentence,
      body:   Faker::Lorem.paragraph
    )
@@ -48,6 +56,7 @@ users = User.all
      body: Faker::Lorem.paragraph
    )
  end
+
 
 
 
