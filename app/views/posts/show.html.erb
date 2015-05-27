@@ -10,3 +10,17 @@
   <% end %>
   </div>
 </div>
+
+<% if @post.summary.present? %>
+
+  <h1>Post Summary</h1>
+  <p><%= @post.summary.body %></p>
+
+<% else %>
+
+  <%= form_for [@topic, @post, @post.build_summary] do |f| %>
+    <%= f.text_field :body %>
+    <%= f.submit %>
+  <% end %>
+
+<% end %>

@@ -15,7 +15,12 @@
 
         <div class="pull-right user-info">
           <% if current_user %>
-            What's good <%= current_user.name %>!
+            <!-- This creates a link to the signed-in user's profile edit page.
+            The link text displays the user's email if the user's name isnt set. -->
+            What's good? <%= link_to (current_user.name || current_user.email),
+                edit_user_registration_path %>! <%= link_to "Sign out",
+                destroy_user_session_path, method: :delete %>
+             
             <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
             <% else %>
               <%= link_to "Sign In", new_user_session_path %> or
