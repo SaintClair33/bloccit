@@ -45,10 +45,10 @@ class PostsController < ApplicationController
   def update
     @topic = Topic.find(params[:topic_id])
     @post = Post.find(params[:id])
-    @post_check = current_user.posts.build(post_params)
+    #@post_check = current_user.posts.build(post_params)
     authorize @post
 
-    if @post_check.update_attributes(params.require(:post).permit(:title, :body))
+    if @post.update_attributes(post_params)
       flash[:notice] = "Post was updated and captured your new update."
       redirect_to [@topic, @post]
     else
