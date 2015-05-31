@@ -6,6 +6,8 @@ class TopicsController < ApplicationController
 
   def new
     @topic = Topic.new
+    #@name = @topic.posts.name
+    #@description = @topic.description
     authorize @topic
   end
 
@@ -22,12 +24,6 @@ class TopicsController < ApplicationController
 
   def create
     @topic = Topic.new(post_params)
-    #@topic = Topic.new(params.require(:topic).permit(:name, :description, :public))
-    #@topic = Topic.new(current_user.topics.build(post_params))
-    #@topic = Topic.find(params[:topic_id])
-    #topic = current_user.topics.build_topic(post_params)
-    #@topic = Topic.new(post_params)
-    #@topic = Topic.new.current_user.topic.build(post_params)
     authorize @topic
     if @topic.save
       redirect_to @topic, notice: "Topic was saved successfully."
