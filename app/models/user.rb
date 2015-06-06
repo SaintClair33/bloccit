@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
   has_many :posts
+  mount_uploader :avatar, AvatarUploader #AvatarUploader tells it which file to use for uploading avatars
+  
 
   def admin?
     role == 'admin'

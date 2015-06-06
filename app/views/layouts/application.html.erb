@@ -15,6 +15,7 @@
 
         <div class="pull-right user-info">
           <% if current_user %>
+            <%= image_tag(current_user.avatar.tiny.url) if current_user.avatar? %>
             <!-- This creates a link to the signed-in user's profile edit page.
             The link text displays the user's email if the user's name isnt set. -->
             What's good? <%= link_to (current_user.name || current_user.email),

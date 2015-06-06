@@ -17,4 +17,7 @@
 # Ignore application configuration
 /config/application.yml
 
+#CarrierWave Image
+public/uploads
+
 
