@@ -29,11 +29,11 @@
     <%= f.submit %>
   <% end %>
 
-<div class="row"
-  <div class="col-md-8">
+<!--<div class="row"
+  <div class="col-md-8"> !-->
     <small>
     <h3>Check out the image for the Post:</h3>
-      <%= image_tag(@post.avatar.tiny.url) if @post.avatar.present? %>
+     <p><%= image_tag(@post.avatar.tiny.url) if @post.avatar.present? %></p>
     </small>
 
 <% end %>
