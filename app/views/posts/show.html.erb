@@ -47,9 +47,12 @@
     <% end %>
 
   <% end %>
+
+  <% if policy(@post).update? %>
   <div>
   <%= form_for [@topic, @post, @post.comments.new] do |f| %>
     <%= f.text_area :body %>
     <%= f.submit %>
   </div>
+  <% end %>
   <% end %>

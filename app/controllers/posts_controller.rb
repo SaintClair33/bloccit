@@ -15,6 +15,7 @@ class PostsController < ApplicationController
     @post = Post.new
     authorize @post #authorize() will check the policy on new post resources
     # if user is present it wll let it render if no user present itll give exception
+    authorize @comments 
   end
 
 
@@ -26,6 +27,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
     @post.topic = @topic
     authorize @post #authorize() will check if user is logged in if not itll give an exception
+    authorize @comments
     
       if @post.save
         flash[:notice] = "Your new post was created and saved."

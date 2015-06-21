@@ -4,6 +4,7 @@ class CommentsController < ApplicationController
     @post = @topic.posts.find(params[:post_id])
     @comment = @post.comments.new(params.require(:comment).permit(:body))
     @comment.user = current_user
+    authorize @comment
 
     @comment.save!#save the code down in the database
 
