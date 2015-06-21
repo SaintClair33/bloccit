@@ -6,16 +6,17 @@ class PostsController < ApplicationController
   #end
 
   def show
-      @post = Post.find(params[:id])
-      @topic = Topic.find(params[:topic_id])
+    @post = Post.find(params[:id])
+    @topic = Topic.find(params[:topic_id])
   end
 
   def new
-      @topic = Topic.find(params[:topic_id])
-      @post = Post.new
-        authorize @post #authorize() will check the policy on new post resources
-       # if user is present it wll let it render if no user present itll give exception
+    @topic = Topic.find(params[:topic_id])
+    @post = Post.new
+    authorize @post #authorize() will check the policy on new post resources
+    # if user is present it wll let it render if no user present itll give exception
   end
+
 
   def create
     #@post = Post.new(params.require(:post).permit(:title, :body))
@@ -26,19 +27,20 @@ class PostsController < ApplicationController
     @post.topic = @topic
     authorize @post #authorize() will check if user is logged in if not itll give an exception
     
-    if @post.save
-      flash[:notice] = "Your new post was created and saved."
-      redirect_to [@topic, @post] #takes you to the new post you created
-    else
-      flash[:error] = "There was an error saving the post. Please try again."
-      render :new # it grabs the new.html.erb file and pastes it in the view
-    end
+      if @post.save
+        flash[:notice] = "Your new post was created and saved."
+        redirect_to [@topic, @post] #takes you to the new post you created
+      else
+        flash[:error] = "There was an error saving the post. Please try again."
+        render :new # it grabs the new.html.erb file and pastes it in the view
+      end
   end
 
 
   def edit
       @topic = Topic.find(params[:topic_id])
       @post = Post.find(params[:id])
+      @comments = Comment.find(params[:id])
       authorize @post
   end
 
