@@ -6,6 +6,7 @@ require 'faker'
     name:     Faker::Name.name,
     email:    Faker::Internet.email,
     password: Faker::Lorem.characters(10)
+    user_id:  Faker::Lorem.characters(13)
  )
  user.skip_confirmation!
  user.save!
@@ -54,6 +55,7 @@ users = User.all
      #user: users.sample, # associates Users with Comments
      post: posts.sample,
      body: Faker::Lorem.paragraph
+
    )
  end
 

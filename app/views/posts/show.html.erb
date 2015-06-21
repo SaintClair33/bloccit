@@ -19,7 +19,7 @@
 
 <% if @post.summary.present? %>
 
-  <h1>Post Summary</h1>
+  <h2>Post Summary</h2>
   <p><%= @post.summary.body %></p>
 
 <% else %>
@@ -29,12 +29,27 @@
     <%= f.submit %>
   <% end %>
 
-<!--<div class="row"
-  <div class="col-md-8"> !-->
-    <small>
-    <% if post.avatar? %>
-    <h3>Check out the image for the Post:</h3>
-     <p><%= image_tag(@post.avatar.tiny.url) if @post.avatar.present? %></p>
-    </small>
-
 <% end %>
+  
+  <% if @post.avatar.present? %>
+    <small>
+    
+    <h3>Check out the image for the Post:</h3>
+     <p><%= image_tag(@post.avatar.tiny.url) %></p>
+    </small>
+  <% end %>
+
+  <% if @post.comments.present? %> 
+
+    <h1>Comments</h1>
+    <% @post.comments.each do |comment| %>
+      <p><%= comment.body %></p>
+    <% end %>
+
+  <% end %>
+  <div>
+  <%= form_for [@topic, @post, @post.comments.new] do |f| %>
+    <%= f.text_area :body %>
+    <%= f.submit %>
+  </div>
+  <% end %>

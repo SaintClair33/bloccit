@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
   has_many :posts
+  has_many :comments
   mount_uploader :avatar, AvatarUploader #AvatarUploader tells it which file to use for uploading avatars
   
 

@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  get 'comments/create'
+
   devise_for :users
 
   #resources :posts
@@ -10,7 +12,9 @@ Rails.application.routes.draw do
   resources :topics do
     resources :posts, except: [:index] do
       resource :summaries, only: [:create, :show]
+      resource :comments, only: [:create]
     end
+
   end
   
   get 'about' => 'welcome#about'
