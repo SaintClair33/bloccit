@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
-  has_many :comments
+  has_many :comments, dependent: :destroy
   has_one :summary
   belongs_to :user #means the post table has the user table's primary key in it
   belongs_to :topic

@@ -8,14 +8,16 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @topic = Topic.find(params[:topic_id])
+
   end
 
   def new
     @topic = Topic.find(params[:topic_id])
     @post = Post.new
+    @comment = Comment.new
     authorize @post #authorize() will check the policy on new post resources
     # if user is present it wll let it render if no user present itll give exception
-    authorize @comments 
+    authorize @comment 
   end
 
 
@@ -26,8 +28,9 @@ class PostsController < ApplicationController
     #@post = current_user.posts.build(params.require(:post).permit(:title, :body))
     @post = current_user.posts.build(post_params)
     @post.topic = @topic
+    @comment = Comment.find(params[:id])
     authorize @post #authorize() will check if user is logged in if not itll give an exception
-    authorize @comments
+    authorize @comment
     
       if @post.save
         flash[:notice] = "Your new post was created and saved."
@@ -42,7 +45,7 @@ class PostsController < ApplicationController
   def edit
       @topic = Topic.find(params[:topic_id])
       @post = Post.find(params[:id])
-      @comments = Comment.find(params[:id])
+      @comment = Comment.find(params[:id])
       authorize @post
   end
 
@@ -60,6 +63,22 @@ class PostsController < ApplicationController
       render :new
     end
   end
+
+  def destroy
+    @topic = Topic.find(params[:topic_id])
+    @post = Post.find(params[:id])
+    authorize @post
+
+    if @post.destroy
+      flash[:notice] = "\"#{@post.title}\" was deleted successfully."
+      redirect_to @topic
+    else
+      flash[:error] = "There was an error deleting the post."
+      render :show
+    end
+  end
+
+
 
   private
 

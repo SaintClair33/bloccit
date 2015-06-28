@@ -3,5 +3,9 @@ class PostPolicy < ApplicationPolicy #Policy for the post class
     #methods in parents class
     true
   end
+
+  def destroy?
+    user.present? && (record.user == user || user.admin? || user.moderator?)
+  end
 end
 
