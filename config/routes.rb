@@ -14,13 +14,14 @@ Rails.application.routes.draw do
     #end
 
   #end
-
+  
   resources :topics do
-    resources :posts, except: [:index]
+    resources :posts, except: [:index] do
+      resource  :summaries, only: [:create, :show] # use singular resource when you dont need an ID to look it up
+    end
   end
 
   resources :posts, only: [] do # the [] we dont want to create any /posts/:id routes just posts/:post_id/comments
-    resource  :summaries, only: [:create, :show] # use singular resource when you dont need an ID to look it up
     resources :comments, only: [:create, :destroy]
   end   
   

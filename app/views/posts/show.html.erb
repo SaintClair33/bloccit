@@ -55,7 +55,7 @@
         <small>
           <%= comment.user.name %> commented <%= time_ago_in_words(comment.created_at) %> ago
           <% if policy(comment).destroy? %>
-            | <%= link_to "Delete", [@topic, @post, comment], method: :delete %>
+            | <%= link_to "Delete", [@post, comment], method: :delete %>
           <% end %>
         </small>
         <p><%= comment.body %></p>
@@ -68,7 +68,7 @@
 
   <% if policy(@post).update? %>
   <div>
-  <%= form_for [@topic, @post, @post.comments.new] do |f| %>
+  <%= form_for [@post, @post.comments.new] do |f| %>
     <%= f.text_area :body %>
     <%= f.submit %>
   </div>
