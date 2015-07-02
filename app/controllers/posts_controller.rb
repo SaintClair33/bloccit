@@ -22,15 +22,15 @@ class PostsController < ApplicationController
 
 
   def create
-    #@post = Post.new(params.require(:post).permit(:title, :body))
+    # @post = Post.new(params.require(:post).permit(:title, :body))
     #require and permit make sure only certain keys are passed to Post.new
     @topic = Topic.find(params[:topic_id])
     #@post = current_user.posts.build(params.require(:post).permit(:title, :body))
     @post = current_user.posts.build(post_params)
     @post.topic = @topic
-    @comment = Comment.find(params[:id])
+    # @comment = Comment.find(params[:id])
     authorize @post #authorize() will check if user is logged in if not itll give an exception
-    authorize @comment
+    # authorize @comment
     
       if @post.save
         flash[:notice] = "Your new post was created and saved."
