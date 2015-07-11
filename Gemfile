@@ -20,7 +20,7 @@ group :development do
   gem "rails-erd"
 end
 
-gem 'pry-rails', :group => :development
+gem 'pry-rails', :group => [:development, :test]
 
 
 # Gems used only for assets and not required
