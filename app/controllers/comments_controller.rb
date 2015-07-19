@@ -5,7 +5,11 @@ class CommentsController < ApplicationController
     @comment.user = current_user
     authorize @comment
 
-    @comment.save!#save the code down in the database
+    if @comment.save #save the code down in the database
+      flash[:notice] = "Your comment was saved!"
+    else
+      flash[:error] = "Your comment failed to save."
+    end
 
     redirect_to [@post.topic, @post]
   end
@@ -17,10 +21,9 @@ class CommentsController < ApplicationController
     authorize @comment
     if @comment.destroy
       flash[:notice] = "Comment was removed."
-      redirect_to [@post.topic, @post]
     else
       flash[:error] = "Comment couldn't be deleted. Try again."
-      redirect_to [@post.topic, @post]
     end
+    redirect_to [@post.topic, @post]
   end
 end

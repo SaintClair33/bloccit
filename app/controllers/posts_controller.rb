@@ -8,16 +8,12 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @topic = Topic.find(params[:topic_id])
-
   end
 
   def new
     @topic = Topic.find(params[:topic_id])
     @post = Post.new
-    @comment = Comment.new
-    authorize @post #authorize() will check the policy on new post resources
     # if user is present it wll let it render if no user present itll give exception
-    authorize @comment 
   end
 
 
@@ -60,7 +56,7 @@ class PostsController < ApplicationController
       redirect_to [@topic, @post]
     else
       flash[:error] = "There was an error saving the post. Please try again."
-      render :new
+      render :edit
     end
   end
 
@@ -85,5 +81,7 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:title, :body, :avatar)
   end
+
+  
 
 end

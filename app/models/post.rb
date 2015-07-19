@@ -4,9 +4,11 @@ class Post < ActiveRecord::Base
   has_one :summary
   belongs_to :user #means the post table has the user table's primary key in it
   belongs_to :topic
+
   #has_one :summary
   mount_uploader :avatar, AvatarUploader
-  default_scope {order('created_at DESC')}
+  #default_scope {order('created_at DESC')}
+  default_scope {order('rank DESC')}
   
   validates :title, length: {minimum: 5},  presence: true
   validates :body,  length: {minimum: 20}, presence: true
@@ -40,6 +42,13 @@ class Post < ActiveRecord::Base
 
   def points
     votes.pluck(:value).sum
+  end
+
+  def update_rank
+    age_in_days = (created_at - Time.new(1970,1,1)) / (60 * 60 * 24) #1  day in seconds
+    new_rank = points + age_in_days
+
+    update_attribute(:rank, new_rank)
   end
 
   private
