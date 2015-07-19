@@ -17,10 +17,7 @@ class Post < ActiveRecord::Base
 
   after_create :create_vote
 
-  def create_vote
-    # self == post
-    votes.create! post: self, value: 1, user: self.user
-  end
+  
 
 
   def markdown_title
@@ -58,6 +55,11 @@ class Post < ActiveRecord::Base
     extensions = {fenced_code_blocks: true}
     redcarpet = Redcarpet::Markdown.new(renderer, extensions)
     return redcarpet
+  end
+
+  def create_vote
+    # self == post
+    votes.create! post: self, value: 1, user: self.user
   end
 end
 
