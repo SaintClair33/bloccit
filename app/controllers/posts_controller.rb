@@ -29,6 +29,7 @@ class PostsController < ApplicationController
     # authorize @comment
     
       if @post.save
+        @post.create_vote
         flash[:notice] = "Your new post was created and saved."
         redirect_to [@topic, @post] #takes you to the new post you created
       else
