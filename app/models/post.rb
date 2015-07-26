@@ -22,6 +22,14 @@ class Post < ActiveRecord::Base
     user.votes.create(value: 1, post: self)
   end
 
+  def save_with_initial_vote
+    #@post = current_user.posts.build(post_params)
+    ActiveRecord::Base.transaction do
+      self.save
+      self.create_vote
+    end
+  end
+
 
   def markdown_title
     (render_as_markdown).render(self.title).html_safe

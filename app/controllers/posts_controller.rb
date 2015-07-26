@@ -28,16 +28,16 @@ class PostsController < ApplicationController
     authorize @post #authorize() will check if user is logged in if not itll give an exception
     # authorize @comment
     
-      if @post.save
-        @post.create_vote
-        flash[:notice] = "Your new post was created and saved."
-        redirect_to [@topic, @post] #takes you to the new post you created
-      else
-        flash[:error] = "There was an error saving the post. Please try again."
-        render :new # it grabs the new.html.erb file and pastes it in the view
-      end
+    @post.save_with_initial_vote
+        #@post.create_vote
+        #flash[:notice] = "Your new post was created and saved."
+        #redirect_to [@topic, @post] #takes you to the new post you created
+      #else
+        #flash[:error] = "There was an error saving the post. Please try again."
+        #render :new # it grabs the new.html.erb file and pastes it in the view
+      #end
   end
-
+    
 
   def edit
       @topic = Topic.find(params[:topic_id])
