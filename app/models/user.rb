@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :votes, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+
   mount_uploader :avatar, AvatarUploader #AvatarUploader tells it which file to use for uploading avatars
   
 
@@ -16,6 +18,10 @@ class User < ActiveRecord::Base
 
   def moderator?
     role == 'moderator'
+  end
+
+  def favorited(post)
+    favorites.where(post_id: post.id).first
   end
 
   

@@ -1,5 +1,6 @@
 module TestFactories
 
+
   def associated_post(options={})
       post_options = {
         title: 'Post title',
