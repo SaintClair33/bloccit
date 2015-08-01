@@ -4,6 +4,7 @@ class Post < ActiveRecord::Base
   has_one :summary
   belongs_to :user #means the post table has the user table's primary key in it
   belongs_to :topic
+  has_many :favorites
 
   #has_one :summary
   mount_uploader :avatar, AvatarUploader
