@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   #the resources method lets you restrict which RESTful routes you want
-  resources :users, only: [:update] #creates new action users#update
+  resources :users, only: [:update, :show] #creates new action users#update
 
   #resources :topics do
     #resources :posts, except: [:index] do
