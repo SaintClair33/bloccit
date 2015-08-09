@@ -21,6 +21,7 @@ group :development do
 end
 
 gem 'pry-rails', :group => [:development, :test]
+gem 'puma', :group => [:development, :production]
 
 
 # Gems used only for assets and not required
@@ -52,6 +53,7 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog'
 gem 'will_paginate', '~> 3.0.5'
+gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
