@@ -22,7 +22,8 @@ end
 
 gem 'pry-rails', :group => [:development, :test]
 gem 'puma', :group => [:development, :production]
-
+#gem 'factory_girl_rails', :require => false
+gem 'factory_girl_rails', '~> 4.0'
 
 # Gems used only for assets and not required
 # in production environments by default.
