@@ -1,6 +1,5 @@
 #require 'rails_helper'
 
-
 FactoryGirl.define do 
   factory :user do
     name "Douglas Adams"
@@ -9,4 +8,12 @@ FactoryGirl.define do
     password_confirmation "helloworld"
     confirmed_at Time.now
   end
+
+  factory :user_with_post_and_comment do
+    user
+    comment 
+
+    after(:build) do {|user_with_post_and_comment| :create(user) }
+    end
+  end 
 end
