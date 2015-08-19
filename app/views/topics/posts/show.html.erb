@@ -66,11 +66,14 @@
     <div class="media-body">
         <small>
           <%= comment.user.name %> commented <%= time_ago_in_words(comment.created_at) %> ago
+          
           <% if policy(comment).destroy? %>
             | <%= link_to "Delete", [@post, comment], method: :delete %>
           <% end %>
         </small>
+        <div class='js-comments'>
         <p><%= comment.body %></p>
+      </div>
     </div>
       </div>
       
@@ -80,9 +83,11 @@
 
   <% if policy(@post).update? %>
   <div>
-  <%= form_for [@post, @post.comments.new] do |f| %>
+  <%= form_for [@post, @post.comments.new], remote: true do |f| %>
+    <div class='new-comment'>
     <%= f.text_area :body %>
     <%= f.submit %>
+    </div>
   </div>
   <% end %>
   <% end %>

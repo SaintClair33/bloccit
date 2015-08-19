@@ -1,8 +1,11 @@
 class CommentsController < ApplicationController
   def create
     @post = Post.find(params[:post_id])
-    @comment = @post.comments.new(params.require(:comment).permit(:body))
+    #@comment = @post.comments.new(params.require(:comment).permit(:body))
+    @comment = Comment.new(comment_params)
     @comment.user = current_user
+    @comment.post = @post
+    @new_comment = Comment.new
     authorize @comment
 
     if @comment.save #save the code down in the database
@@ -31,4 +34,8 @@ class CommentsController < ApplicationController
       format.js #return response type in js
     end
   end
+
+    def comment_params
+      params.require(:comment).permit(:body)
+    end
 end
