@@ -8,6 +8,7 @@ class Topics::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @topic = Topic.find(params[:topic_id])
+    @comments = @post.comments
     authorize @topic
   end
 

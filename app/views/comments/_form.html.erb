@@ -1,15 +1,15 @@
-<%= form_for [topic, post, Comment.new] do |f| %>
-  <% if post.comments.any? %>
+<%= form_for [post, comment] do |f| %>
+  <% if comment.errors.any? %>
     <div class="alert alert-danger">
-      <h4>There are <%= pluralize(comments.errors.count, "error") %>.</h4>
+      <h4>There are <%= pluralize(comment.errors.count, "error") %>.</h4>
       <ul>
-        <% comments.errors.full_messages.each do |msg| %>
+        <% comment.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
-  <%= form_group_tag(comments.errors[:body]) do %>
+  <%= form_group_tag(comment.errors[:body]) do %>
     <%= f.label :body %>
     <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter comment here" %>
   <% end %>

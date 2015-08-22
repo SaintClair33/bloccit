@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
 
-
-  get 'comments/create'
-
   devise_for :users
   #the resources method lets you restrict which RESTful routes you want
   resources :users, only: [:update, :show, :index] #creates new action users#update
